@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
             }, 0, 1000);
 
             isRunning = true;
-            startPauseButton.setText("暫停");
+            startPauseButton.setText("暫停了");
         }
     }
 
