@@ -257,6 +257,7 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    // Update timer display
     private void updateTimerDisplay() {
         int hours = remainingSeconds / 3600;
         int minutes = (remainingSeconds % 3600) / 60;
@@ -270,3 +271,4 @@ public class MainActivity extends AppCompatActivity {
         timerTextView.setText(timeString);
     }
 }
+
