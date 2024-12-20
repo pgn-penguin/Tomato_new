@@ -5,12 +5,15 @@
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleJvm" value="jbr-17" />
+<<<<<<< HEAD
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>
+=======
+>>>>>>> c63497a613a646db43d27dee3d39575ed6031d05
         <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>

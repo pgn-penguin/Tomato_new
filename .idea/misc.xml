@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
 <<<<<<< HEAD
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" default="true">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
@@ -13,4 +14,9 @@
     <option name="id" value="Android" />
   </component>
 >>>>>>> d29516f70ca9c6832553a355b296ea8c35175ace
+=======
+  <component name="ProjectRootManager" version="2" default="true">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+>>>>>>> c63497a613a646db43d27dee3d39575ed6031d05
 </project>
