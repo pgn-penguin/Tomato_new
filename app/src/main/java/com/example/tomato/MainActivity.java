@@ -11,17 +11,17 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.NumberPicker;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.EditText;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
+import androidx.annotation.NonNull;
+import android.view.MenuItem;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
     private TextView timerTextView;
@@ -33,12 +33,15 @@ public class MainActivity extends AppCompatActivity {
     private Button recordButton;
     private TextView modeTextView;
 
+
+
     private Timer timer;
     private int totalSeconds;
     private int remainingSeconds;
     private boolean isRunning = false;
     private TimerMode currentMode = TimerMode.POMODORO;
     private String focusPurpose;
+
 
     enum TimerMode {
         POMODORO, SHORT_BREAK, LONG_BREAK
@@ -60,8 +63,9 @@ public class MainActivity extends AppCompatActivity {
         secondPicker = findViewById(R.id.secondPicker);
         startPauseButton = findViewById(R.id.startPauseButton);
         resetButton = findViewById(R.id.resetButton);
-        recordButton = findViewById(R.id.recordButton);
+        //recordButton = findViewById(R.id.recordButton);
         modeTextView = findViewById(R.id.modeTextView);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         hourPicker.setMinValue(0);
         hourPicker.setMaxValue(23);
@@ -94,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,14 +106,46 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        recordButton.setOnClickListener(new View.OnClickListener() {
+        // Set bottom navigation view item selected listener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, RecordActivity.class);
-                startActivity(intent);
+            public boolean onNavigationItemSelected(MenuItem item) {
+                // 根據選擇的項目啟動對應的 Activity
+                if(item.getItemId()==R.id.nav_home){
+                    // 啟動首頁 Activity
+                    Intent homeIntent = new Intent(MainActivity.this, MainActivity.class);
+                    //startActivity(homeIntent);
+                    return true;
+                }
+                else if (item.getItemId()==R.id.nav_search) {
+                    // 啟動搜尋 Activity
+                    Intent searchIntent = new Intent(MainActivity.this, RecordActivity.class);
+                    startActivity(searchIntent);
+                    return true;
+                }
+                else if (item.getItemId()==R.id.nav_notifications) {
+                    // Activity
+                    Intent searchIntent = new Intent(MainActivity.this, muyuActivity.class);
+                    startActivity(searchIntent);
+                    return true;
+                }
+                else{
+                    return false;
+                }
             }
         });
+        if (savedInstanceState == null) {
+            bottomNavigationView.setSelectedItemId(R.id.nav_home);
+        }
     }
+    protected void onResume() {
+        super.onResume();
+
+        // 重置 BottomNavigationView 的選中項目
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.nav_home); // 回到預設選項
+    }
+
 
     private void showFocusPurposeDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -268,4 +305,5 @@ public class MainActivity extends AppCompatActivity {
         String timeString = String.format("%02d:%02d:%02d", hours, minutes, seconds);
         timerTextView.setText(timeString);
     }
+
 }
