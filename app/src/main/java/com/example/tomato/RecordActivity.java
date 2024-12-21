@@ -44,6 +44,7 @@ public class RecordActivity extends AppCompatActivity {
 
         recordListView = findViewById(R.id.recordListView);
         recordManager = new FocusRecordManager(this);// 用來儲存每條記錄的 ID
+        daynow = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
         // 初始化 ListView 和資料庫
         dbHelper = new DatabaseHelper(this);
@@ -83,7 +84,6 @@ public class RecordActivity extends AppCompatActivity {
 
                 // 獲取對應的 ID
                 final int recordId = recordIds.get(position);
-
                 // 顯示刪除確認對話框
                 new AlertDialog.Builder(RecordActivity.this)
                         .setTitle("確認刪除")
